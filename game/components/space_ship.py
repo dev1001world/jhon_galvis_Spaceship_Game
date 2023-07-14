@@ -10,12 +10,13 @@ class Spaceshipt(Sprite):
         self.rect.y = SCREEN_HEIGHT - 100
     def update(self,user_input):
         if user_input[pygame.K_LEFT]:
-            if self.rect.left > 0:
-                self.rect.x -=10
-            
+            self.rect.x -=10
+            if self.rect.x < -45:
+                self.rect.x = SCREEN_WIDTH
         elif user_input[pygame.K_RIGHT]:
-            if self.rect.right < SCREEN_WIDTH:                    
-                self.rect.x +=10
+            self.rect.x +=10
+            if self.rect.x > SCREEN_WIDTH:
+                self.rect.x = 0
 
         if user_input[pygame.K_UP]:
             if self.rect.y > SCREEN_HEIGHT // 3: #deje screenheing // 3  para poder crear una mecanica de esquivar naves enemigas
