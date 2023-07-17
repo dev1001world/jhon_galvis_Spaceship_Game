@@ -2,11 +2,10 @@ from typing import Any
 import pygame, random
 from pygame.sprite import Sprite
 from game.utils.constants import ENEMY_1, SHIP_WIDTH, SHIP_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT
-class Enemy(Sprite):
-    
+class Enemy(Sprite): 
     POS_Y= 10 
-    SPEED_X = 2.5
-    SPEED_Y = 0.5
+    SPEED_X = 1
+    SPEED_Y = 1
     MOVE_X = {0: 'left', 1:'right'}
     def __init__(self):
         self.image = ENEMY_1
@@ -39,3 +38,6 @@ class Enemy(Sprite):
         if (self.step >= self.move_for_x and self.movement_x == 'left') or (self.rect.x <= 0):
             self.movement_x = 'right'
             self.step = 0
+    
+
+
