@@ -1,8 +1,8 @@
-import pygame, random
+import pygame
 from pygame.sprite import Sprite
 from game.components.enemys.enemy import Enemy
 from game.utils.constants import ENEMY_3, SHIP_HEIGHT, SHIP_WIDTH, SCREEN_WIDTH
-class Enemy_three(Enemy, Sprite):
+class EnemyThree(Enemy, Sprite):
     SPEED_Y = 15
     SPEED_X = 1
     def __init__(self):
@@ -14,4 +14,3 @@ class Enemy_three(Enemy, Sprite):
             self.rect.x = SCREEN_WIDTH
         if self.rect.x > SCREEN_WIDTH:
             self.rect.x = 0
-    

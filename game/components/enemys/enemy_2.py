@@ -2,8 +2,7 @@ import pygame
 from pygame.sprite import Sprite
 from game.components.enemys.enemy import Enemy
 from game.utils.constants import ENEMY_2, SHIP_HEIGHT, SHIP_WIDTH, SCREEN_WIDTH
-
-class Enemy_two(Enemy, Sprite):
+class EnemyTwo(Enemy, Sprite):
     SPEED_Y = 0.5
     SPEED_X = 8
     def __init__(self):
