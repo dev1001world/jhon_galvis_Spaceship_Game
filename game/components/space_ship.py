@@ -1,6 +1,7 @@
-import pygame
+import pygame,random
 from pygame.sprite import Sprite
 from game.utils.constants import SPACESHIP, SCREEN_HEIGHT, SCREEN_WIDTH, SHIP_WIDTH, SHIP_HEIGHT
+from game.components.bullet.bullet import Bullet
 class Spaceshipt(Sprite):
     X_POS = (SCREEN_WIDTH // 2) - 40
     Y_POS = SCREEN_HEIGHT - 100
@@ -11,7 +12,9 @@ class Spaceshipt(Sprite):
         self.rect = self.imgage.get_rect()
         self.rect.x = self.X_POS
         self.rect.y = self.Y_POS
-    def update(self,user_input):
+        self.type = 'player'
+        self.time = True
+    def update(self,user_input,game):
         if user_input[pygame.K_LEFT] or user_input[pygame.K_a]:
             self.move_left()
         if user_input[pygame.K_RIGHT] or user_input[pygame.K_d]:
@@ -20,6 +23,11 @@ class Spaceshipt(Sprite):
             self.move_up()
         if user_input[pygame.K_DOWN] or user_input[pygame.K_s]:
              self.move_down()
+        if user_input[pygame.K_SPACE] or user_input[pygame.K_l]:
+             self.shooter(game)
+    def shooter(self,manager_bullet):
+        bullet = Bullet(self)
+        manager_bullet.add_bullet(bullet)
     def move_left(self):
         self.rect.x -=self.SPEED_SHIP
         if self.rect.x < -45:
@@ -29,7 +37,7 @@ class Spaceshipt(Sprite):
         if self.rect.x > SCREEN_WIDTH:
             self.rect.x = SCREEN_WIDTH - SCREEN_WIDTH
     def move_up(self):
-        if self.rect.y > SCREEN_HEIGHT // 3: #deje screenheing // 3  para poder crear una mecanica de esquivar naves enemigas
+        if self.rect.y > SCREEN_HEIGHT // 3:
                 self.rect.y -= self.SPEED_SHIP
     def move_down(self):
         if self.rect.y < SCREEN_HEIGHT - 70:

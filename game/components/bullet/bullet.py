@@ -3,7 +3,7 @@ import pygame
 from pygame.sprite import Sprite
 from game.utils.constants import BULLET, BULLET_ENEMY, SCREEN_HEIGHT
 class Bullet(Sprite):
-    BULLETS_SIZE = pygame.transform.scale(BULLET,(10,20))
+    BULLETS_SIZE = pygame.transform.scale(BULLET,(20,40))
     BULLETS_SIZE_ENEMY = pygame.transform.scale(BULLET_ENEMY,(10,32))
     BULLETS = {
     'player':BULLETS_SIZE,
@@ -16,8 +16,15 @@ class Bullet(Sprite):
         self.rect.center = spaceship.rect.center
         self.owner = spaceship.type
     def update(self,bullets):
-        self.rect.y += self.SPEED
-        if self.rect.y >= SCREEN_HEIGHT:
-            bullets.remove(self)
+        for bullet in bullets:
+            if bullet.owner == 'enemy':
+                self.rect.y += self.SPEED
+                if self.rect.y >= SCREEN_HEIGHT:
+                    bullets.remove(self)
+
+            if bullet.owner == 'player':
+                self.rect.y -= self.SPEED
+                if self.rect.y >= SCREEN_HEIGHT:
+                    bullets.remove(self)
     def draw(self,screen):
         screen.blit(self.image, self.rect)

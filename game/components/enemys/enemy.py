@@ -20,11 +20,10 @@ class Enemy(Sprite):
         self.move_for_x = random.randint(50, 100)
         self.step = 0
         self.type = 'enemy'
-        self.shooting_time = random.randint(30,60)
+        self.shooting_time = 1000
     def update(self, enemies,game):
         self.rect.y += self.speed_y
         self.shoot(game.bullet)
-
         if self.rect.y >= SCREEN_HEIGHT:
             enemies.remove(self)
         
@@ -38,7 +37,7 @@ class Enemy(Sprite):
         if self.shooting_time <= current_time:
             bullet = Bullet(self)
             manager_bullet.add_bullet(bullet)
-            self.shooting_time += random.randint(20,50)
+            self.shooting_time += random.randint(2000,3000)
     def draw(self, screen):
         screen.blit(self.image, self.rect)
     def change_movement_x(self):

@@ -2,8 +2,7 @@ import random
 from game.components.enemys.enemy import Enemy
 from game.components.enemys.enemy_2 import EnemyTwo
 from game.components.enemys.enemy_3 import EnemyThree
-#random_enemy = random.randint(1,10)
-class Enemy_mangener:
+class EnemyMangener:
     def __init__(self):
         self.enemies = []
     def update(self,game):
@@ -14,6 +13,6 @@ class Enemy_mangener:
         for enemy in self.enemies:
             enemy.draw(screen)
     def add_enemy(self):
-        if len(self.enemies) < 10:
+        if len(self.enemies) < 3:
             enemys_ships = [Enemy(), EnemyTwo(), EnemyThree()]
             self.enemies.append(enemys_ships[random.randint(0,2)])
