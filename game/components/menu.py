@@ -16,7 +16,7 @@ class Menu:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 game.playing = False
-                game.running = True
+                game.running = False
             elif event.type == pygame.KEYDOWN:
                 game.run()
     def reset_screen_color(self,screen):

@@ -1,10 +1,11 @@
 import pygame
 from game.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE, FONT_STYLE
 from game.components.space_ship import Spaceshipt
-from game.components.enemys.mangener_enemy import EnemyMangener
+from game.components.enemy.mangener_enemy import EnemyMangener
 from game.components.bullet.manager_bullet import BulletManager
-from game.components.enemys.enemy import Enemy
+from game.components.enemy.enemy import Enemy
 from game.components.menu import Menu
+BLACK = (0,0,0)
 class Game:
     def __init__(self):
         pygame.init()
@@ -24,6 +25,8 @@ class Game:
         self.menu = Menu('press any key ta star...', self.screen)
         self.score = 0
         self.death_count = 0
+        self.best_score_player = 0
+        self.total_score_player = 0
     def execute(self):
         self.running = True
         while self.running:
@@ -38,8 +41,6 @@ class Game:
             self.events()
             self.update()
             self.draw()
-        pygame.display.quit()
-        pygame.quit()
     def events(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -70,12 +71,14 @@ class Game:
         self.y_pos_bg += self.game_speed
     def show_menu(self):
         self.menu.reset_screen_color(self.screen)
-        
         if self.death_count == 0:
             self.menu.draw(self.screen)
         else:
-            self.menu.updata_message("new_message")
-            self.menu.draw(self.screen)
+            self.menu.updata_message("GAME OVER. Press SPACE key to restart")
+            self.total_score()
+            self.best_score()
+            self.total_death()
+            self.score = 0
         icon = self.image = pygame.transform.scale(ICON,(80,120))
         self.screen.blit(icon,(SCREEN_WIDTH//2-40,(SCREEN_HEIGHT//2)- 150))
         self.menu.update(self)
@@ -85,3 +88,33 @@ class Game:
         text_rect = text.get_rect()
         text_rect.center = (1000,50)
         self.screen.blit(text,text_rect)
+    def total_score(self):
+        self.score_player = []
+        self.var_score =True
+        if self.var_score:
+            self.score_player.append(self.total_score_player)
+            font=pygame.font.Font(FONT_STYLE, 30)
+            text = font.render(f'Your Score: {self.score_player[0]}', True,BLACK)
+            text_rect = text.get_rect()
+            text_rect.center = ((SCREEN_WIDTH//2-40,(SCREEN_HEIGHT//2) + 40))
+            self.screen.blit(text,text_rect)   
+    def best_score(self):
+        font=pygame.font.Font(FONT_STYLE, 30)
+        text = font.render(f'Best score: {self.best_score_player}', True,BLACK)
+        text_rect = text.get_rect()
+        text_rect.center = ((SCREEN_WIDTH//2-40,(SCREEN_HEIGHT//2) + 80))
+        self.screen.blit(text,text_rect)
+    def total_death(self):
+        font=pygame.font.Font(FONT_STYLE, 30)
+        text = font.render(f'Total deaths: {self.death_count}', True,BLACK)
+        text_rect = text.get_rect()
+        text_rect.center = ((SCREEN_WIDTH//2-40,(SCREEN_HEIGHT//2) + 120))
+        self.screen.blit(text,text_rect)
+
+
+            
+
+
+
+
+            

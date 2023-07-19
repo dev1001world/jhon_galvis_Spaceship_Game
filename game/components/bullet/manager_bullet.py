@@ -20,6 +20,7 @@ class BulletManager:
                     game.enemy.enemies.remove(enemy)
                     self.bullets.remove(bullet)
                     game.score += 1
+                    game.total_score_player += 1
     def draw(self, screen):
         for bullet in self.enemy_bullets:
             bullet.draw(screen)

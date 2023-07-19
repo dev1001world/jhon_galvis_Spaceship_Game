@@ -1,6 +1,6 @@
 import pygame,random
 from pygame.sprite import Sprite
-from game.components.enemys.enemy import Enemy
+from game.components.enemy.enemy import Enemy
 from game.utils.constants import ENEMY_3, SHIP_HEIGHT, SHIP_WIDTH, SCREEN_WIDTH
 from game.components.bullet.bullet import Bullet
 class EnemyThree(Enemy, Sprite):
