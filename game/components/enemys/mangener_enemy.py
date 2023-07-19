@@ -13,6 +13,6 @@ class EnemyMangener:
         for enemy in self.enemies:
             enemy.draw(screen)
     def add_enemy(self):
-        if len(self.enemies) < 3:
+        if len(self.enemies) < 5:
             enemys_ships = [Enemy(), EnemyTwo(), EnemyThree()]
             self.enemies.append(enemys_ships[random.randint(0,2)])

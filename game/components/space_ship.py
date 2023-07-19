@@ -25,7 +25,7 @@ class Spaceshipt(Sprite):
              self.move_down()
         if user_input[pygame.K_SPACE] or user_input[pygame.K_l]:
              self.shooter(game)
-    def shooter(self,manager_bullet):
+    def shooter(self,manager_bullet): #falta modificar para que pueda disparar bien
         bullet = Bullet(self)
         manager_bullet.add_bullet(bullet)
     def move_left(self):

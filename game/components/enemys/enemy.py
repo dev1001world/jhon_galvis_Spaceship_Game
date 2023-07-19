@@ -32,7 +32,7 @@ class Enemy(Sprite):
         else:
             self.rect.x += self.speed_x
         self.change_movement_x()
-    def shoot(self, manager_bullet):
+    def shoot(self, manager_bullet):#falta modificar para que dispare sin que se bug
         current_time = pygame.time.get_ticks()
         if self.shooting_time <= current_time:
             bullet = Bullet(self)
