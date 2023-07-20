@@ -25,4 +25,3 @@ class Menu:
         self.text = self.font.render(message,True,(0,0,0))
         self.text_rect = self.text.get_rect()
         self.text_rect.center = (SCREEN_WIDTH//2,SCREEN_HEIGHT//2)
-

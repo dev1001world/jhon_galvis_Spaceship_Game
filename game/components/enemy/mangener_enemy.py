@@ -16,3 +16,5 @@ class EnemyMangener:
         if len(self.enemies) < 5:
             enemy_ships = [Enemy(), EnemyTwo(), EnemyThree()]
             self.enemies.append(enemy_ships[random.randint(0,2)])
+    def remove_enemy(self):
+        self.enemies=[]

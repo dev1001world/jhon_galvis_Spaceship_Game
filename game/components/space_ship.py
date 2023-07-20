@@ -1,6 +1,6 @@
 import pygame,random
 from pygame.sprite import Sprite
-from game.utils.constants import SPACESHIP, SCREEN_HEIGHT, SCREEN_WIDTH, SHIP_WIDTH, SHIP_HEIGHT
+from game.utils.constants import SPACESHIP, SCREEN_HEIGHT, SCREEN_WIDTH, SHIP_WIDTH, SHIP_HEIGHT, DEFAULT_TYPE
 from game.components.bullet.bullet import Bullet
 class Spaceshipt(Sprite):
     X_POS = (SCREEN_WIDTH // 2) - 40
@@ -14,6 +14,10 @@ class Spaceshipt(Sprite):
         self.rect.y = self.Y_POS
         self.type = 'player'
         self.time = True
+        self.power_up_type = DEFAULT_TYPE
+        self.has_power_up = False
+        self.power_time_up = 0
+
     def update(self,user_input,game):
         if user_input[pygame.K_LEFT] or user_input[pygame.K_a]:
             self.move_left()
@@ -44,3 +48,6 @@ class Spaceshipt(Sprite):
                 self.rect.y += self.SPEED_SHIP
     def draw(self, screen):
         screen.blit(self.imgage,self.rect)
+    def set_image(self,size = (40,60), image= SPACESHIP):
+         self.imgage = image
+         self.imgage = pygame.transform.scale(self.imgage, size)
