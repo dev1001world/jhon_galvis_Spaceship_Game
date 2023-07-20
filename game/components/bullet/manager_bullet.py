@@ -14,13 +14,32 @@ class BulletManager:
                     game.death_count += 1
                     pygame.time.delay(2000)
                     break
+            for enemy in game.enemy.enemies:
+                if enemy.rect.colliderect(game.player.rect):
+                    game.playing = False
+                    game.death_count += 1
+                    pygame.time.delay(500)
+                    break
+            for rock in game.enemy.rock:
+                if rock.rect.colliderect(game.player.rect):
+                    game.playing = False
+                    game.death_count += 1
+                    pygame.time.delay(500)
+                    break
+                
         for bullet in self.bullets:
             bullet.update(self.bullets)
             for enemy in game.enemy.enemies:
                 if bullet.rect.colliderect(enemy.rect) and bullet.owner == 'player':
                     game.enemy.enemies.remove(enemy)
                     self.bullets.remove(bullet)
+                    game.score += 2
+            for rock in game.enemy.rock:
+                if bullet.rect.colliderect(rock.rect) and bullet.owner == 'player':
+                    game.enemy.rock.remove(rock)
+                    self.bullets.remove(bullet)
                     game.score += 1
+            
     def draw(self, screen):
         for bullet in self.enemy_bullets:
             bullet.draw(screen)

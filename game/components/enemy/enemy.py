@@ -1,7 +1,7 @@
 from typing import Any
 import pygame, random
 from pygame.sprite import Sprite
-from game.utils.constants import ENEMY_1, SHIP_WIDTH, SHIP_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT
+from game.utils.constants import ENEMY_1, SHIP_WIDTH, SHIP_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT, TNT_TYPE
 from game.components.bullet.bullet import Bullet
 class Enemy(Sprite): 
     POS_Y= 10 
@@ -21,6 +21,7 @@ class Enemy(Sprite):
         self.step = 0
         self.type = 'enemy'
         self.shooting_time = 1000
+        self.power_tnt_type = TNT_TYPE
     def update(self, enemies,game):
         self.rect.y += self.speed_y
         self.shoot(game.bullet)
